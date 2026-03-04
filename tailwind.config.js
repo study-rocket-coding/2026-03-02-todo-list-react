@@ -13,6 +13,7 @@ export default {
         'brand-gray':   '#9f9a91',
       },
       backgroundImage: {
+        'full-yellow': 'linear-gradient(175deg, #ffd370 100%, #fff 0%)',
         'half-yellow': 'linear-gradient(175deg, #ffd370 60%, #fff 40%)',
       },
       fontFamily: {

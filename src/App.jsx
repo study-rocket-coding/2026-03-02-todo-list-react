@@ -4,7 +4,7 @@ import logoImg from "./assets/logoImg.png";
 function App() {
   return (
     <>
-      <div id="todoListPage" className="bg-half-yellow">
+      <div id="todoListPage" className="bg-half-yellow max-sm:bg-full-yellow">
         <nav className="flex justify-between items-center pt-6 px-8 max-sm:mb-4">
           <h1>
             <a
