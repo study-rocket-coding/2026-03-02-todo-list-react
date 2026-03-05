@@ -30,6 +30,21 @@ function App() {
     ));
   }
 
+  // 編輯待辦功能
+  function editTodoItem(e, id, currentContent) {
+    e.preventDefault();
+
+    const newContent = prompt("請輸入新的內容", currentContent);
+
+    if (newContent === null) return; // 按取消
+    if (!newContent.trim()) { alert("請輸入內容"); return; }
+    if (newContent.length > 50) { alert("內容不能超過 50 字"); return; }
+
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, content: newContent.trim() } : todo
+    ));
+  }
+
   // 刪除待辦功能
   function deleteTodoItem(e, id) {
     e.preventDefault();
@@ -142,9 +157,14 @@ function App() {
                             {todo.content}
                           </span>
                         </label>
-                        <a href="#" className="text-xl/5 ml-[17px] mr-2 mb-2 block p-1 text-brand-dark opacity-0 hover:opacity-100" onClick={(e) => deleteTodoItem(e, todo.id)}>
-                          <i className="fa fa-times"></i>
-                        </a>
+                        <div className="flex opacity-0 hover:opacity-100">
+                          <a href="#" className="text-xl/5 ml-[17px] mr-2 mb-2 block p-1 text-brand-dark" onClick={(e) => editTodoItem(e, todo.id, todo.content)}>
+                            <i className="fa fa-edit"></i>
+                          </a>
+                          <a href="#" className="text-xl/5 ml-[17px] mr-2 mb-2 block p-1 text-brand-dark" onClick={(e) => deleteTodoItem(e, todo.id)}>
+                            <i className="fa fa-times"></i>
+                          </a>
+                        </div>
                       </li>
                     ))
                   )}
