@@ -25,7 +25,7 @@ function NavBar({ username }) {
         <ul className="flex">
           <li className="max-sm:hidden">
             <a href="#" className="no-underline text-brand-dark ml-6 hover:text-brand-orange">
-              <span className="font-bold">王小明的代辦</span>
+              <span className="font-bold">{username} 的代辦</span>
             </a>
           </li>
           <li className="max-sm:mt-[11px]">
