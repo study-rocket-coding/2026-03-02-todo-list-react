@@ -1,6 +1,7 @@
 import { useState } from "react";       // 1. React 本身
 import NavBar from "./components/NavBar"; // 2. 元件
 import TodoInput from "./components/TodoInput";
+import TodoTabs from "./components/TodoTabs";
 import "./App.css";                       // 3. 樣式
 
 function App() {
@@ -72,23 +73,7 @@ function App() {
           <div className="w-[500px] my-0 mx-auto max-sm:w-full">
             <TodoInput onCreateTodo={createTodoItem} />
             <div className="todoList_list bg-white rounded-[10px] shadow-todo">
-              <ul className="todoList_tab flex justify-evenly">
-                <li className="w-full">
-                  <a href="#" className={`block no-underline leading-5 font-bold text-center p-4 border-b-2 border-solid ${activeTab === "all" ? "text-[#333333] border-[#333333]" : "text-brand-gray border-[#efefef]"}`} onClick={(e) => handleTabChange(e, "all")}>
-                    全部
-                  </a>
-                </li>
-                <li className="w-full">
-                  <a href="#" className={`block no-underline leading-5 font-bold text-center p-4 border-b-2 border-solid ${activeTab === "pending" ? "text-[#333333] border-[#333333]" : "text-brand-gray border-[#efefef]"}`} onClick={(e) => handleTabChange(e, "pending")}>
-                    待完成
-                  </a>
-                </li>
-                <li className="w-full">
-                  <a href="#" className={`block no-underline leading-5 font-bold text-center p-4 border-b-2 border-solid ${activeTab === "completed" ? "text-[#333333] border-[#333333]" : "text-brand-gray border-[#efefef]"}`} onClick={(e) => handleTabChange(e, "completed")}>
-                    已完成
-                  </a>
-                </li>
-              </ul>
+              <TodoTabs activeTab={activeTab} onTabChange={handleTabChange} />
               <div className="todoList_items pt-[23px] pl-[24px] pr-[17px] pb-[32px]">
                 <ul className="todoList_item mb-2 max-h-[280px] overflow-y-auto has-[.no-data]:overflow-y-hidden">
                   {todos.length === 0 ? (
