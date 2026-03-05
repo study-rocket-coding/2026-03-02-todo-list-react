@@ -1,9 +1,1 @@
-.todoList_list .todoList_tab .active {
-  color: #333333;
-  border-bottom: 2px solid #333333;
-}
 
-.todoList_list .todoList_items li:has(p) {
-  justify-content: center;
-  min-height: 300px;
-}
