@@ -1,26 +1,20 @@
 import { useState } from "react";       // 1. React 本身
 import NavBar from "./components/NavBar"; // 2. 元件
+import TodoInput from "./components/TodoInput";
 import "./App.css";                       // 3. 樣式
 
 function App() {
 
   const [todos, setTodos] = useState([]);
-  const [inputValue, setInputValue] = useState("");
   const [activeTab, setActiveTab] = useState("all");
 
   // 新增待辦功能
-  function createTodoItem() {
-    if (!inputValue.trim()) {
-      alert("請輸入內容");
-      return;
-    }
-
+  function createTodoItem(value) {
     setTodos([...todos, {
       id: Date.now(),
-      content: inputValue.trim(),
+      content: value,
       completed: false
     }]);
-    setInputValue("");
   }
 
   // 切換完成狀態功能
@@ -76,18 +70,7 @@ function App() {
         <NavBar username="王小明" />
         <div className="my-0 mx-auto py-[87px] px-8 max-sm:py-4 h-screen">
           <div className="w-[500px] my-0 mx-auto max-sm:w-full">
-            <div className="inputBox w-full flex relative mb-4 shadow-todo">
-              <input
-                type="text"
-                placeholder="請輸入待辦事項"
-                className="bg-white border-0 rounded-[10px] relative w-full h-[47px] pl-4"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
-              <a href="#" className="create_todo block w-10 h-[39px] absolute bg-brand-dark text-white text-xl/5 no-underline text-center rounded-[10px] top-1 right-1 p-[10px]" onClick={createTodoItem}>
-                <i className="fa fa-plus"></i>
-              </a>
-            </div>
+            <TodoInput onCreateTodo={createTodoItem} />
             <div className="todoList_list bg-white rounded-[10px] shadow-todo">
               <ul className="todoList_tab flex justify-evenly">
                 <li className="w-full">
