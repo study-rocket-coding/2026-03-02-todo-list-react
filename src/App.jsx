@@ -1,6 +1,6 @@
-import { useState } from "react";
-import "./App.css";
-import logoImg from "./assets/logoImg.png";
+import { useState } from "react";       // 1. React 本身
+import NavBar from "./components/NavBar"; // 2. 元件
+import "./App.css";                       // 3. 樣式
 
 function App() {
 
@@ -73,38 +73,7 @@ function App() {
   return (
     <>
       <div id="todoListPage" className="bg-half-yellow max-sm:bg-full-yellow">
-        <nav className="flex justify-between items-center pt-6 px-8 max-sm:mb-4">
-          <h1>
-            <a
-              href="#"
-              className="
-                block
-                w-[243px]
-                h-[39px]
-                bg-no-repeat
-                bg-center
-                bg-contain
-                indent-[101%]
-                overflow-hidden
-                whitespace-nowrap
-              "
-              style={{ backgroundImage: `url(${logoImg})` }}>
-              ONLINE TODO LIST
-            </a>
-          </h1>
-          <ul className="flex">
-            <li className="max-sm:hidden">
-              <a href="#" className="no-underline text-brand-dark ml-6 hover:text-brand-orange">
-                <span className="font-bold">王小明的代辦</span>
-              </a>
-            </li>
-            <li className="max-sm:mt-[11px]">
-              <a href="#loginPage" className="no-underline text-brand-dark ml-6 max-sm:ml-0 hover:text-brand-orange">
-                登出
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <NavBar username="王小明" />
         <div className="my-0 mx-auto py-[87px] px-8 max-sm:py-4 h-screen">
           <div className="w-[500px] my-0 mx-auto max-sm:w-full">
             <div className="inputBox w-full flex relative mb-4 shadow-todo">
