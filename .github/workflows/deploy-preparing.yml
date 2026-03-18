@@ -42,7 +42,7 @@ jobs:
       - name: Build project
         run: npm run build # 會產生 dist 資料夾
         env:
-          VITE_BASE_URL: /2026-03-02-todo-list-react/
+          VITE_BASE_URL: /2026-03-02-todo-list-react-ts/
 
       # 設定 GitHub Pages
       - name: Setup Pages
