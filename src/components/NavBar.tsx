@@ -1,6 +1,10 @@
 import logoImg from "../assets/logoImg.png";
 
-function NavBar({ username }) {
+type NavBarProps =  {
+  username: string
+}
+
+function NavBar({ username }: NavBarProps) {
   return (
     <>
       <nav className="flex justify-between items-center pt-6 px-8 max-sm:mb-4">

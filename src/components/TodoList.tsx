@@ -1,6 +1,20 @@
 import { useEffect } from "react";
 
-function TodoList({ todos, filteredTodos, onToggle, onEdit, onDelete }) {
+type Todo = {
+  id: number;
+  content: string;
+  completed: boolean;
+}
+
+type TodoListProps = {
+  todos: Todo[]
+  filteredTodos: Todo[]
+  onToggle: (id: number) => void
+  onEdit: (e: React.MouseEvent<HTMLAnchorElement>, id: number, content: string) => void
+  onDelete: (e: React.MouseEvent<HTMLAnchorElement>, id: number) => void
+}
+
+function TodoList({ todos, filteredTodos, onToggle, onEdit, onDelete }: TodoListProps) {
 
   useEffect(() => {
     console.log("todos 更新了，目前共", todos.length, "筆");
