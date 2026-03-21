@@ -5,13 +5,19 @@ import TodoTabs from "./components/TodoTabs";
 import TodoList from "./components/TodoList";
 import "./App.css";                       // 3. 樣式
 
+type Todo = {
+  id: number
+  content: string
+  completed: boolean
+}
+
 function App() {
 
-  const [todos, setTodos] = useState([]);
-  const [activeTab, setActiveTab] = useState("all");
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [activeTab, setActiveTab] = useState<string>("all");
 
   // 新增待辦功能
-  function createTodoItem(value) {
+  function createTodoItem(value: string) {
     setTodos([...todos, {
       id: Date.now(),
       content: value,
@@ -20,14 +26,14 @@ function App() {
   }
 
   // 切換完成狀態功能
-  function toggleTodoStatus(id) {
+  function toggleTodoStatus(id: number) {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ));
   }
 
   // 編輯待辦功能
-  function editTodoItem(e, id, currentContent) {
+  function editTodoItem(e: React.MouseEvent<HTMLAnchorElement>, id: number, currentContent: string) {
     e.preventDefault();
 
     const newContent = prompt("請輸入新的內容", currentContent);
@@ -42,7 +48,7 @@ function App() {
   }
 
   // 刪除待辦功能
-  function deleteTodoItem(e, id) {
+  function deleteTodoItem(e: React.MouseEvent<HTMLAnchorElement>, id: number) {
     e.preventDefault();
 
     const isConfirmed = confirm("確認刪除待辦事項？");
@@ -52,7 +58,7 @@ function App() {
   }
 
   // 取得篩選後的資料
-  function getFilteredData() {
+  function getFilteredData(): Todo[]  {
     return todos.filter(todo => {
       if (activeTab === "pending") return !todo.completed;
       if (activeTab === "completed") return todo.completed;
@@ -61,7 +67,7 @@ function App() {
   }
 
   // 篩選顯示功能
-  function handleTabChange(e, status) {
+  function handleTabChange(e: React.MouseEvent<HTMLAnchorElement>, status: string) {
     e.preventDefault();
     setActiveTab(status);
   }
