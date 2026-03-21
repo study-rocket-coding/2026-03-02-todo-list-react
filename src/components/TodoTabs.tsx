@@ -1,24 +1,25 @@
-import { useEffect } from "react";
+type TodoTabsProps = {
+  activeTab: string;
+  onTabChange: (e: React.MouseEvent<HTMLAnchorElement>, key: string) => void;
+}
 
-// 全大寫 → 常數，不會變化
-const TABS = [
+const tabs = [
   { key: "all",       label: "全部" },
   { key: "pending",   label: "待完成" },
   { key: "completed", label: "已完成" },
 ];
 
-function TodoTabs({ activeTab, onTabChange }) {
+const baseClass = "block no-underline leading-5 font-bold text-center p-4 border-b-2 border-solid";
+const activeClass = "text-[#333333] border-[#333333]";
+const inactiveClass = "text-brand-gray border-[#efefef]";
 
-  useEffect(() => {
-    console.log("目前 tab：", activeTab);
-  }, [activeTab]); // activeTab 變化時才執行
-
+function TodoTabs({ activeTab, onTabChange }: TodoTabsProps) {
   return (
     <>
       <ul className="flex justify-evenly">
-        {TABS.map((tab) => (
+        {tabs.map((tab) => (
           <li key={tab.key} className="w-full">
-            <a href="#" className={`block no-underline leading-5 font-bold text-center p-4 border-b-2 border-solid ${activeTab === tab.key ? "text-[#333333] border-[#333333]" : "text-brand-gray border-[#efefef]"}`} onClick={(e) => onTabChange(e, tab.key)}>
+            <a href="#" className={`${baseClass} ${activeTab === tab.key ? activeClass : inactiveClass}`} onClick={(e) => onTabChange(e, tab.key)}>
               {tab.label}
             </a>
           </li>
