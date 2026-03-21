@@ -1,12 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 
-function TodoInput({ onCreateTodo }) {
-  const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef(null);
+type TodoInputProps =  {
+  onCreateTodo: (value: string) => void;
+}
+
+function TodoInput({ onCreateTodo }: TodoInputProps) {
+  const [inputValue, setInputValue] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // 第一次 render 完後，自動 focus 到 input
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []); // [] 代表只在第一次 render 後執行一次
 
   function handleCreate() {
@@ -18,7 +22,7 @@ function TodoInput({ onCreateTodo }) {
     onCreateTodo(inputValue.trim()); // 把值往上傳給 App
     setInputValue("");
 
-    inputRef.current.focus(); // 新增完後重新 focus
+    inputRef.current?.focus(); // 新增完後重新 focus
   }
 
   return (
